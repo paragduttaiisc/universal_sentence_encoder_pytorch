@@ -22,6 +22,8 @@ text ──► tokenizer (TF-exact) ──► token ids ──► use_v5_embed.p
 
 - Python 3.10
 - CPU or CUDA-capable machine; `use_v5_embed.pt` is ~1.4 GB
+- [Git LFS](https://git-lfs.github.com) — the model file `use_v5_embed.pt` is
+  tracked with Git LFS, so `git lfs` must be installed before cloning
 
 ```bash
 pip install -r requirements.txt
@@ -35,9 +37,18 @@ its own transitive dependencies (`onnx`, `torchvision`) via pip.
 ## Quick start
 
 ```bash
-python main.py
+git lfs install        # once per machine — enables LFS for all repos
+git clone https://github.com/paragduttaiisc/universal_sentence_encoder_pytorch.git
+cd universal_sentence_encoder_pytorch
+pip install -r requirements.txt
+python main.py                       # embed with the bundled model
+python main.py --model path/to/model.pt --vocab path/to/vocab.npz
+python main.py --help                # full option list
 ```
 
+> **Note:** without git-lfs, `use_v5_embed.pt` checks out as a small text
+> pointer file instead of the real model and loading fails. In that case run
+> `git lfs install && git lfs pull` inside the clone.
 Expected output:
 
 ```
