@@ -1,0 +1,3 @@
+numpy==1.24.4
+torch==2.5.1
+onnx2pytorch==0.5.3
